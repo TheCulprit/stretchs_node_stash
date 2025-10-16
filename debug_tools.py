@@ -1,12 +1,13 @@
-from invokeai.app.invocations.baseinvocation import (
-    BaseInvocation,
+from invokeai.invocation_api import (
+	BaseInvocation,
     BaseInvocationOutput,
     invocation,
     invocation_output,
+    InputField,
+    OutputField,
+    InvocationContext
 )
 from typing import Literal
-from invokeai.app.invocations.fields import InputField, OutputField
-from invokeai.app.services.shared.invocation_context import InvocationContext
 from enum import Enum
 
 class Colours(str, Enum):

@@ -60,7 +60,7 @@ A random collection of nodes for [InvokeAI](https://github.com/invoke-ai/InvokeA
 
 ### Misc
 
-- `Random Aspect Ratio` - Selects a width & height between a suplied min & max aspect ratio that is appropriate for the supplied base model
+- `Random Image Size` - Takes a list of dimensions "1024x1024,888x1184,840x1256" and randomly selects one to use
 
 ### Debug Tools
 
@@ -151,6 +151,8 @@ Loading Tracery grammars from a directory.
 - Small fixes to account for changes in Invoke v5.12.0rc2
 - Fix to ImageToggle thanks to JPhoto
 - Added StringToCollectionSplitter and added escaping to StringCollectionJoiner thanks to JPPhoto
+- Fixed imports for Invoke v6.9.0rc3
+- Replaced RandomAspectRatio with RandomImageSize node
 
 ## License
 This port uses code from the python port of Tracery by Allison Parish and therefore inherits the Apache License 2.0

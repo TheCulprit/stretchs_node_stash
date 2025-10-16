@@ -57,7 +57,7 @@ class LoadTextFileToStringInvocation(BaseInvocation):
 	file_path: str = InputField(title="Path", description="The full path to the text file.")
 
 	def invoke(self, context: InvocationContext) -> LoadTextFileToStringOutput:
-		with open(self.file_path, 'r') as file:
+		with open(self.file_path, 'r', encoding="utf-8") as file:
 			# Read the entire file content into a string
 			file_content = file.read()
 		return LoadTextFileToStringOutput(result=file_content)
@@ -89,7 +89,7 @@ class LoadAllTextFilesInFolderInvocation(BaseInvocation):
 			for filename in files:
 				if filename.endswith(self.extension_to_match):
 					file_path = os.path.join(root, filename)
-					with open(file_path, 'r') as file:
+					with open(file_path, 'r', encoding="utf-8") as file:
 						files_content.append(file.read())
 	
 		return LoadAllTextFilesInFolderOutput(result=files_content)

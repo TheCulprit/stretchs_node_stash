@@ -4,9 +4,7 @@ from invokeai.invocation_api import (
     UNetField,
     InputField,
     InvocationContext,
-    StringOutput
-)
-from invokeai.backend.model_manager.config import (
+    StringOutput,
     AnyModelConfig
 )
 from typing import Literal

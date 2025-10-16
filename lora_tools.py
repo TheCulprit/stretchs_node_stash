@@ -1,28 +1,26 @@
 import random
 from typing import Union, Literal
-from invokeai.app.invocations.baseinvocation import (
-	BaseInvocation,
-	BaseInvocationOutput,
-	invocation,
-	invocation_output,
-)
-from invokeai.app.invocations.model import (
-	LoRAField
-)
-from invokeai.app.invocations.fields import InputField, OutputField, FieldDescriptions
-from invokeai.app.services.shared.invocation_context import InvocationContext
-from invokeai.backend.model_manager.config import (
-	AnyModelConfig,
-	BaseModelType,
-	ModelFormat
-)
 from fastapi import HTTPException
 from invokeai.app.services.model_records import (
 	UnknownModelException
 )
-from invokeai.app.invocations.model import ModelIdentifierField
-from invokeai.backend.model_manager import LoadedModel
-from invokeai.invocation_api import Input
+from invokeai.invocation_api import (
+	Input,
+	AnyModelConfig,
+	BaseModelType,
+	ModelFormat,
+	LoRAField,
+	BaseInvocation,
+	BaseInvocationOutput,
+	invocation,
+	invocation_output,
+	LoadedModel,
+	InvocationContext,
+	InputField,
+	OutputField,
+	FieldDescriptions,
+	ModelIdentifierField
+)
 
 MODEL_TYPE_LABELS = Literal[
 	BaseModelType.StableDiffusion1,
@@ -147,7 +145,7 @@ class LookupLoRACollectionTriggersInvocation(BaseInvocation):
 			for lora in self.lora_collection:
 				# Get the input LoRA's data from the Model Manager
 				loaded_model: LoadedModel = context.models.load(identifier=lora.lora.key)
-			
+				
 				# Extract trigger words in to a new list
 				lora_trigger_list = list(loaded_model.config.trigger_phrases) if loaded_model.config.trigger_phrases else [""]
 

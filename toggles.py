@@ -29,11 +29,8 @@ from invokeai.invocation_api import (
 	UNetField,
 	CLIPField,
 	VAEField,
-	FieldDescriptions
-)
-from invokeai.app.invocations.model import (
-	LoRAField,
-	ModelIdentifierOutput
+	FieldDescriptions,
+	LoRAField
 )
 from invokeai.app.invocations.sdxl import (
 	SDXLModelLoaderOutput
@@ -206,6 +203,12 @@ class SchedulerToggleInvocation(BaseInvocation):
 #endregion
 
 #region Main Model
+@invocation_output("model_toggle_output")
+class ModelToggleOutput(BaseInvocationOutput):
+    """Model Toggle output"""
+
+    model: ModelIdentifierField = OutputField(description="Model identifier", title="Model")
+
 @invocation("model_toggle", title="Model Toggle", tags=["model", "toggle"], category="toggle", version="1.0.0")
 class ModelToggleInvocation(BaseInvocation):
 	"""Allows boolean selection between two separate ModelIdentifier inputs"""
@@ -214,8 +217,8 @@ class ModelToggleInvocation(BaseInvocation):
 	model1: ModelIdentifierField = InputField(description="First Model Input")
 	model2: ModelIdentifierField = InputField(description="First Model Input")
 
-	def invoke(self, context: InvocationContext) -> ModelIdentifierOutput:
-		return ModelIdentifierOutput(model=self.model2 if self.use_second else self.model1)
+	def invoke(self, context: InvocationContext) -> ModelToggleOutput:
+		return ModelToggleOutput(model=self.model2 if self.use_second else self.model1)
 
 @invocation("sdxl_main_model_toggle", title="SDXL Main Model Toggle", tags=["model", "sdxl", "toggle"], category="toggle", version="1.0.0")
 class SDXLMainModelToggleInvocation(BaseInvocation):
