@@ -1,20 +1,21 @@
+from typing import Literal
+
 from invokeai.invocation_api import (
-	BaseInvocation,
-	invocation,
-    UNetField,
+    AnyModelConfig,
+    BaseInvocation,
     InputField,
     InvocationContext,
     StringOutput,
-    AnyModelConfig
+    UNetField,
+    invocation,
 )
-from typing import Literal
 
-INFO_TYPE = Literal[
-    "name",
-    "path"
-]
+INFO_TYPE = Literal["name", "path"]
 
-@invocation("info_grabber_unet_invocation", title="UNet Info Grabber", tags=["unet", "info"], category="info", version="1.0.1")
+
+@invocation(
+    "info_grabber_unet_invocation", title="UNet Info Grabber", tags=["unet", "info"], category="info", version="1.0.1"
+)
 class InfoGrabberUNetInvocation(BaseInvocation):
     """Outputs different info from a UNet"""
 
